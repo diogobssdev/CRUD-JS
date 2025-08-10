@@ -1,0 +1,242 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: #f4f7f6; /* Light gray background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top for better content flow */
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+    background-color: #ffffff; /* White background for the main container */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    width: 100%;
+    max-width: 1200px; /* Max width for better readability on large screens */
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Space between input fields and labels */
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee; /* Separator line */
+    margin-bottom: 30px;
+}
+
+.header label {
+    font-size: 15px;
+    color: #333; /* Darker font color for labels */
+    margin: 0; /* Reset margin */
+}
+
+.header input[type="text"],
+.header input[type="number"] {
+    flex: 1; /* Allow inputs to grow */
+    min-width: 120px; /* Minimum width for inputs */
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.header input[type="text"]:focus,
+.header input[type="number"]:focus {
+    border-color: #007bff; /* Highlight on focus */
+    outline: none;
+}
+
+#btnAdicionar {
+    height: 40px; /* Slightly taller button */
+    padding: 0 20px;
+    background-color: #28a745; /* Green for add button */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 0; /* Reset margin */
+}
+
+#btnAdicionar:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#busca {
+    width: 70%; /* Wider search bar */
+    max-width: 500px;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Rounded search bar */
+    font-size: 16px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#busca:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Adiciona scroll horizontal se a tabela for muito larga */
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
+}
+
+table {
+    width: 100%; /* Ajustado para 100% para ocupar o contêiner */
+    min-width: 700px; /* Define uma largura mínima para a tabela */
+    border-collapse: separate; /* Use separate for border-radius on cells */
+    border-spacing: 0; /* Remove space between cell borders */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Soft shadow for the table */
+    border-radius: 8px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensures rounded corners are visible */
+}
+
+th, td {
+    border: none; /* Remove individual cell borders */
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 15px;
+}
+
+th {
+    background-color: #007bff; /* Primary color for table header */
+    color: #ffffff; /* White text for header */
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase header text */
+    letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa; /* Lighter alternating row color */
+}
+
+tr:hover {
+    background-color: #e2e6ea; /* Slightly darker on hover */
+}
+
+td {
+    border-bottom: 1px solid #eee; /* Light bottom border for cells */
+}
+
+tr:last-child td {
+    border-bottom: none; /* No border on the last row's cells */
+}
+
+.btn-remover,
+.btn-editar {
+    height: 35px; /* Consistent height for action buttons */
+    width: 90px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 8px; /* Slightly less margin */
+}
+
+.btn-remover {
+    background-color: #dc3545; /* Red for remove button */
+}
+
+.btn-remover:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-1px);
+}
+
+.btn-editar {
+    background-color: #007bff; /* Blue for edit button (consistent with header) */
+}
+
+.btn-editar:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-1px);
+}
+
+/* Media Queries para Responsividade */
+
+/* Para telas menores que 768px (smartphones, tablets pequenos) */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Reduz o padding do container */
+        margin: 10px; /* Adiciona uma margem para telas muito pequenas */
+    }
+
+    .header {
+        flex-direction: column; /* Empilha os itens do cabeçalho verticalmente */
+        align-items: stretch; /* Estica os itens para ocupar a largura total */
+        gap: 10px; /* Reduz o espaçamento entre os itens */
+    }
+
+    .header label {
+        text-align: left; /* Alinha o texto da label à esquerda */
+        width: 100%; /* Garante que a label ocupe toda a largura */
+    }
+
+    .header input[type="text"],
+    .header input[type="number"] {
+        width: 100%; /* Ocupa a largura total disponível */
+        min-width: unset; /* Remove o min-width para permitir encolhimento */
+    }
+
+    #btnAdicionar {
+        width: 100%; /* Botão de adicionar ocupa a largura total */
+        margin-top: 10px; /* Adiciona um espaço superior */
+    }
+
+    #busca {
+        width: 90%; /* Aumenta a largura da barra de busca em telas menores */
+    }
+
+    th, td {
+        padding: 10px; /* Reduz o padding das células da tabela */
+        font-size: 14px; /* Reduz o tamanho da fonte da tabela */
+    }
+
+    .btn-remover,
+    .btn-editar {
+        width: 70px; /* Reduz a largura dos botões de ação */
+        font-size: 12px; /* Reduz o tamanho da fonte dos botões */
+        margin-right: 5px; /* Reduz o espaçamento entre os botões */
+    }
+}
+
+/* Para telas menores que 480px (smartphones muito pequenos) */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px; /* Reduz ainda mais o padding */
+    }
+
+    th, td {
+        padding: 8px; /* Reduz ainda mais o padding das células */
+        font-size: 12px; /* Reduz ainda mais o tamanho da fonte */
+    }
+
+    .btn-remover,
+    .btn-editar {
+        width: 60px; /* Reduz novamente a largura dos botões */
+        font-size: 11px; /* Reduz o tamanho da fonte */
+    }
+}
