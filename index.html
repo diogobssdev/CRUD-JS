@@ -1,50 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
+    <title>Bot Financeiro - WhatsApp</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <section class="container">
-        <div class="main">
-            <div class="header">
-                <label>Nome</label>
-                <input type="text" id="nome" placeholder="Digite seu nome">
-                <label>Idade</label>
-                <input type="number" id="idade" placeholder="Digite sua idade" oninput="validarInteiro(this)">
-                <label>Sexo</label>
-                <input type="text" id="sexo" placeholder="Digite seu sexo (F/M)">
-                <label>Email</label>
-                <input type="text" id="email" placeholder="Digite seu email">
-                <label>Estado</label>
-                <input type="text" id="estado" placeholder="Digite seu estado (Ex: SP)">
-                <button id="btnAdicionar" onclick="adicionarNaTabela()">Adicionar</button>
-                
+        <header class="page-header">
+            <div>
+                <h1>Controle Financeiro com Bot de WhatsApp</h1>
+                <p>Envie mensagens como “Comprei mercado dia 10/03 e paguei R$ 89,90 no cartão” e acompanhe tudo no dashboard.</p>
             </div>
-                <div class="content">
-                    <input type="text" id="busca" placeholder="Buscar cadastros..." oninput="filtrarTabela()" />
-                    <div class="table-container"> <table id="tabela">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Idade</th>
-                                <th>Sexo</th>
-                                <th>Email</th>
-                                <th>Cidade</th>
-                                <th>Ações</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+            <div class="badge">IA + CRUD</div>
+        </header>
 
-                            </tbody>
-                        </table>
-                    </div>
+        <main class="grid">
+            <section class="card">
+                <h2>Simular mensagem do WhatsApp</h2>
+                <p class="helper-text">O bot interpreta data, valor, categoria e forma de pagamento.</p>
+                <textarea id="mensagem" rows="4" placeholder="Ex: Comprei remédio dia 05/02 e paguei R$ 35,90 no pix"></textarea>
+                <button id="btnMensagem" onclick="processarMensagem()">Processar mensagem</button>
+                <div id="mensagemStatus" class="status"></div>
+            </section>
+
+            <section class="card">
+                <h2>Adicionar gasto manualmente</h2>
+                <div class="form-grid">
+                    <label>Descrição</label>
+                    <input type="text" id="descricao" placeholder="Ex: Academia">
+
+                    <label>Data</label>
+                    <input type="date" id="data_compra">
+
+                    <label>Valor (R$)</label>
+                    <input type="number" id="valor" step="0.01" placeholder="0,00">
+
+                    <label>Categoria</label>
+                    <select id="categoria">
+                        <option value="Mercado">Mercado</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+
+                    <label>Pagamento</label>
+                    <select id="forma_pagamento">
+                        <option value="Pix">Pix</option>
+                        <option value="Crédito">Crédito</option>
+                        <option value="Débito">Débito</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Indefinido">Indefinido</option>
+                    </select>
                 </div>
-        </div>
+                <button id="btnAdicionar" onclick="adicionarGasto()">Adicionar gasto</button>
+            </section>
+        </main>
+
+        <section class="dashboard">
+            <div class="card">
+                <h3>Total gasto</h3>
+                <p id="totalGasto" class="metric">R$ 0,00</p>
+            </div>
+            <div class="card">
+                <h3>Gasto no mês atual</h3>
+                <p id="totalMes" class="metric">R$ 0,00</p>
+            </div>
+            <div class="card">
+                <h3>Categorias em destaque</h3>
+                <ul id="categoriasResumo" class="list"></ul>
+            </div>
+        </section>
+
+        <section class="card table-card">
+            <div class="table-header">
+                <h2>Histórico de gastos</h2>
+                <input type="text" id="busca" placeholder="Buscar gastos..." oninput="filtrarTabela()" />
+            </div>
+            <div class="table-container">
+                <table id="tabela">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Categoria</th>
+                            <th>Pagamento</th>
+                            <th>Origem</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
     </section>
+
     <script src="main.js"></script>
 </body>
 </html>
